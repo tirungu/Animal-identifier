@@ -1,0 +1,67 @@
+import javax.swing.*;
+import java.awt.*;
+import java.awt.event.*;
+
+public class PigIdentifier extends JFrame implements ActionListener {
+
+  private final ImageIcon pigImage;
+  private final JRadioButton birdButton;
+  private final JRadioButton catButton;
+  private final JRadioButton dogButton;
+  private final JRadioButton rabbitButton;
+  private final JRadioButton pigButton;
+
+  public PigIdentifier() {
+    super("Pig Identifier");
+
+    pigImage = new ImageIcon("path/to/your/pig.jpg");
+
+    birdButton = new JRadioButton("Bird");
+    catButton = new JRadioButton("Cat");
+    dogButton = new JRadioButton("Dog");
+    rabbitButton = new JRadioButton("Rabbit");
+    pigButton = new JRadioButton("Pig");
+
+    ButtonGroup group = new ButtonGroup();
+    group.add(birdButton);
+    group.add(catButton);
+    group.add(dogButton);
+    group.add(rabbitButton);
+    group.add(pigButton);
+
+    birdButton.addActionListener(this);
+    catButton.addActionListener(this);
+    dogButton.addActionListener(this);
+    rabbitButton.addActionListener(this);
+    pigButton.addActionListener(this);
+
+    JPanel imagePanel = new JPanel();
+    imagePanel.add(new JLabel(pigImage));
+
+    JPanel buttonPanel = new JPanel(new FlowLayout());
+    buttonPanel.add(birdButton);
+    buttonPanel.add(catButton);
+    buttonPanel.add(dogButton);
+    buttonPanel.add(rabbitButton);
+    buttonPanel.add(pigButton);
+
+    getContentPane().setLayout(new BorderLayout());
+    getContentPane().add(imagePanel, BorderLayout.CENTER);
+    getContentPane().add(buttonPanel, BorderLayout.SOUTH);
+
+    setSize(300, 250);
+    setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+    setVisible(true);
+  }
+
+  @Override
+  public void actionPerformed(ActionEvent e) {
+    if (e.getSource() != pigButton) {
+      JOptionPane.showMessageDialog(this, "The animal displayed is a Pig");
+    }
+  }
+
+  public static void main(String[] args) {
+    new PigIdentifier();
+  }
+}
